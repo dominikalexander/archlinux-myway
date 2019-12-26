@@ -1,0 +1,41 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/nvme0n1p2 UUID=64b4b84e-2b18-4f5d-87cd-723a9b7a689b
+LABEL=ROOT          	/         	btrfs     	rw,noatime,compress=lzo,ssd,space_cache=v2,subvol=@snapshots/TESTING	0 0
+
+# /dev/nvme0n1p2 UUID=64b4b84e-2b18-4f5d-87cd-723a9b7a689b
+LABEL=ROOT          	/home     	btrfs     	rw,noatime,compress=lzo,ssd,space_cache=v2,subvol=@home	0 0
+
+# /dev/nvme0n1p2 UUID=64b4b84e-2b18-4f5d-87cd-723a9b7a689b
+LABEL=ROOT              /home/.home_snapshots           btrfs           rw,noatime,compress=lzo,ssd,space_cache=v2,subvol=@home_snapshots 0 0
+
+# /dev/nvme0n1p2 UUID=64b4b84e-2b18-4f5d-87cd-723a9b7a689b
+LABEL=ROOT          	/var/log  	btrfs     	rw,noatime,compress=lzo,ssd,space_cache=v2,subvol=@log	0 0
+
+# /dev/nvme0n1p2 UUID=64b4b84e-2b18-4f5d-87cd-723a9b7a689b
+LABEL=ROOT          	/var/cache/pacman/pkg	btrfs   rw,noatime,compress=lzo,ssd,space_cache=v2,subvol=@pkg	0 0
+
+# /dev/nvme0n1p2 UUID=64b4b84e-2b18-4f5d-87cd-723a9b7a689b
+LABEL=ROOT		/var/lib/libvirt/images	btrfs	rw,noatime,compress=lzo,ssd,space_cache=v2,subvol=@images	0 0
+
+# /dev/nvme0n1p2 UUID=64b4b84e-2b18-4f5d-87cd-723a9b7a689b
+LABEL=ROOT          	/.snapshots	btrfs     	rw,noatime,compress=lzo,ssd,space_cache=v2,subvol=@snapshots	0 0
+
+# /dev/nvme0n1p1 UUID=698E-DE71
+LABEL=EFI           	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# /dev/nvme0n1p2 UUID=64b4b84e-2b18-4f5d-87cd-723a9b7a689b
+LABEL=ROOT          	/btrfs    	btrfs     	rw,noatime,compress=lzo,ssd,space_cache=v2,subvolid=5	0 0
+
+# /dev/nvme0n1p3 UUID=35cb6b47-3b1b-4a94-ae5c-c65a7f62edf6
+LABEL=SWAP          	none      	swap      	defaults,pri=-2	0 0
+
+# Ramdisk
+tmpfs			/home/niggi/.cache	tmpfs	noatime,nodev,nosuid,size=2G	0 0
+
+# NFS Mounts
+192.168.188.80:/volume1/sdsniggi	/mnt/nfs/syn	nfs	x-systemd.automount,noauto,retry=0,x-systemd.idle-timeout=60,nolock,rw,timeo=2,retrans=1,x-systemd.device-timeout=2,soft,nofail	0 0
+
+192.168.188.10:/		/mnt/nfs/media	nfs	x-systemd.automount,noauto,retry=0,x-systemd.idle-timeout=60,nolock,rw,timeo=2,retrans=1,x-systemd.device-timeout=2,soft,nofail	0 0
